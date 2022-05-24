@@ -1,0 +1,23 @@
+name: Test
+
+on: [ push ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [ 3.10.4 ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install requirments
+        run: |
+          pip install -r test-requirements.txt
+      - name: Run tox
+        run: tox

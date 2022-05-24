@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: IOS-XE switches connector
+  description: Connector API to Cisco IOS-XE switches
+  contact:
+    email: daniele.rossi@vem.com
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /hello:
+    get:
+      summary: say hello
+      description: |
+        Simple API that hails.
+      operationId: say_hello
+      responses:
+        "200":
+          description: say hello
+          content:
+            application/json:
+              schema:
+                type: string
+                x-content-type: application/json
+      x-openapi-router-controller: ios_xe_switch_connector.controllers.default_controller
+components: {}
+
