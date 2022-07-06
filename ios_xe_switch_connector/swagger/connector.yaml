@@ -8,20 +8,52 @@ info:
 servers:
 - url: /
 paths:
-  /hello:
+  /vlan:
     get:
-      summary: say hello
+      summary: get vlans
       description: |
-        Simple API that hails.
-      operationId: say_hello
+        Get all vlans on a switch.
+      operationId: get_vlan
       responses:
         "200":
-          description: say hello
+          description: ok
           content:
             application/json:
               schema:
                 type: string
                 x-content-type: application/json
       x-openapi-router-controller: ios_xe_switch_connector.controllers.default_controller
-components: {}
+  /interface/vlan:
+    post:
+      summary: create vlan
+      description: |
+        Create a vlan for a device interface
+      operationId: create_vlan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VlanInfo'
+        required: true
+      responses:
+        "201":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: string
+                x-content-type: application/json
+      x-openapi-router-controller: ios_xe_switch_connector.controllers.default_controller
+components:
+  schemas:
+    VlanInfo:
+      required:
+      - interface_name
+      - vlan_number
+      type: object
+      properties:
+        vlan_number:
+          type: integer
+        interface_name:
+          type: string
 
