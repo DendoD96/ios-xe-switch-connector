@@ -33,7 +33,7 @@ def create_vlan(body):  # noqa: E501
         splitted_iface = re.search(regex, name)
 
         body_a = {
-            "Cisco-IOS-XE-native:TwoGigabitEthernet": [
+            f"Cisco-IOS-XE-native:{splitted_iface[1]}": [
                 {
                     "name": splitted_iface[2],
                     "switchport": {
