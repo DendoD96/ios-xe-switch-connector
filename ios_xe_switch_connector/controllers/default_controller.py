@@ -47,7 +47,7 @@ def create_vlan(body):  # noqa: E501
         headers = {'Accept': 'application/yang-data+json', 'Content-Type': 'application/yang-data+json'}
         response = requests.patch(api_url, verify=False, headers=headers,
                                   auth=(os.getenv('USRNAME'), os.getenv('PASSWORD')), data=json.dumps(body_a))
-        return response.json()
+        return f"patch completed vlan {vlan} created on the interface {name}"
 
 
 def get_vlan():  # noqa: E501
